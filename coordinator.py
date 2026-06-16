@@ -5,7 +5,7 @@ from typing import Any
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
 from .const import LOGGER
-from .data import BluStreamData
+from .data import BluStreamConfigEntry
 from .hdmi_matrix.exceptions import (
     MatrixCommandError,
     MatrixConnectionError,
@@ -17,14 +17,14 @@ MAX_FAILURES = 3
 class BluStreamCoordinator(DataUpdateCoordinator):
     """BluStream data update coordinator."""
 
-    config_entry: BluStreamData
+    config_entry: BluStreamConfigEntry
     consecutive_failures: int = 0
 
     async def _async_update_data(self) -> Any:
         """Fetch data from the BluStream device."""
         try:
             LOGGER.debug("Updating BluStream data")
-            device_info = await self.config_entry.client.get_device_info()
+            device_info = await self.config_entry.runtime_data.client.get_device_info()
             self.consecutive_failures = 0  # Reset on successful update
             return device_info
         except (MatrixConnectionError, MatrixTimeoutError) as err:
