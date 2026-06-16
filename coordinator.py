@@ -24,9 +24,9 @@ class BluStreamCoordinator(DataUpdateCoordinator):
         """Fetch data from the BluStream device."""
         try:
             LOGGER.debug("Updating BluStream data")
-            device_info = await self.config_entry.runtime_data.client.get_device_info()
+            await self.config_entry.runtime_data.client.get_device_info()
             self.consecutive_failures = 0  # Reset on successful update
-            return device_info
+            return self.config_entry.runtime_data.client.matrix_info
         except (MatrixConnectionError, MatrixTimeoutError) as err:
             self.consecutive_failures += 1
             LOGGER.error("Error connecting to BluStream device: %s, consecutive failures: %s", err, self.consecutive_failures)
