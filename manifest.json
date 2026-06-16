@@ -1,0 +1,18 @@
+{
+  "domain": "blustream",
+  "name": "BluStream",
+  "version": "0.1.0",
+  "codeowners": [
+    "@cbailster"
+  ],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://www.home-assistant.io/integrations/blustream",
+  "homekit": {},
+  "integration_type": "device",
+  "iot_class": "local_polling",
+  "quality_scale": "custom",
+  "requirements": [],
+  "ssdp": [],
+  "zeroconf": []
+}

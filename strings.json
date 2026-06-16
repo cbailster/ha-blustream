@@ -1,0 +1,24 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "data": {
+            "host": "[%key:common::config_flow::data::host%]",
+            "port": "[%key:common::config_flow::data::port%]",
+            "scan_interval": "Polling Interval (seconds)"
+          }
+      }
+    },
+    "error": {
+      "cannot_connect": "[%key:common::config_flow::error::cannot_connect%]",
+      "invalid_auth": "[%key:common::config_flow::error::invalid_auth%]",
+      "unknown": "[%key:common::config_flow::error::unknown%]",
+      "invalid_host": "The host is not a valid IP address or hostname.",
+      "invalid_response": "The device returned an unexpected response.",
+      "invalid_scan_interval": "Polling interval must be between 5 and 60 seconds."
+    },
+    "abort": {
+      "already_configured": "[%key:common::config_flow::abort::already_configured_device%]"
+    }
+  }
+}
