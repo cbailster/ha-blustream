@@ -18,7 +18,7 @@ from .data import BluStreamData, BluStreamConfigEntry
 from .config_flow import DEFAULT_SCAN_INTERVAL, DEFAULT_PORT
 
 # Platforms to set up for this integration
-PLATFORMS: list[Platform] = [Platform.SWITCH, Platform.SELECT]
+PLATFORMS: list[Platform] = [Platform.SWITCH, Platform.SELECT, Platform.SENSOR]
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: BluStreamConfigEntry) -> bool:
