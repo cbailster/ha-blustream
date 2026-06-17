@@ -139,7 +139,7 @@ class HDMIMatrixClient:
                     name=self._extract_xml_value(output_elem.find("name")),
                     status=self._extract_xml_value(output_elem.find("outputen")) == "1",
                     input_port=(
-                        self._extract_xml_value(output_elem.find("from"), int) or 0 + 1
+                        (self._extract_xml_value(output_elem.find("from"), int) or 0) + 1
                     )
                     if self._extract_xml_value(output_elem.find("from"))
                     else None,
@@ -218,7 +218,7 @@ class HDMIMatrixClient:
             MatrixCommandError: If command fails
         """
         return await self.client.send_command(
-            f"out{output_port:02d}fr{'on' if enabled else 'off'}"
+            f"out{output_port:02d}{'on' if enabled else 'off'}"
         )
 
     def connect(self) -> None:
