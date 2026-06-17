@@ -1,5 +1,6 @@
 """Switch platform for BlueStream integration."""
 
+import asyncio
 from typing import Any
 
 from homeassistant.components.switch import SwitchEntity
@@ -57,11 +58,13 @@ class PowerSwitch(CoordinatorEntity[BluStreamCoordinator], SwitchEntity): # pyri
     async def async_turn_on(self, **kwargs: Any) -> None:
         """Turn on power."""
         await self._coordinator.config_entry.runtime_data.client.set_power(True)
+        await asyncio.sleep(5)
         await self._coordinator.async_request_refresh()
 
     async def async_turn_off(self, **kwargs: Any) -> None:
         """Turn off power."""
         await self._coordinator.config_entry.runtime_data.client.set_power(False)
+        await asyncio.sleep(5)
         await self._coordinator.async_request_refresh()
 
 class OutputSwitch(CoordinatorEntity, SwitchEntity): # pyright: ignore[reportIncompatibleVariableOverride] pylint: disable=abstract-method
@@ -105,9 +108,11 @@ class OutputSwitch(CoordinatorEntity, SwitchEntity): # pyright: ignore[reportInc
     async def async_turn_on(self, **kwargs: Any) -> None:
         """Enable output."""
         await self._coordinator.config_entry.runtime_data.client.set_output_status(self._output_id, True)
+        await asyncio.sleep(5)
         await self._coordinator.async_request_refresh()
 
     async def async_turn_off(self, **kwargs: Any) -> None:
         """Disable output."""
         await self._coordinator.config_entry.runtime_data.client.set_output_status(self._output_id, False)
+        await asyncio.sleep(5)
         await self._coordinator.async_request_refresh()
