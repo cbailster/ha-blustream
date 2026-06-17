@@ -62,7 +62,7 @@ class HDMIMatrixClient:
         Returns:
             name of the audio output option that maps to the audio_input_options dictionary from the MatrixInfo class, or None if no match is found
         """
-        TYPE_MAP: list[str] = ["ana", "ext", "arc", "foana", "foext"]  # noqa: N806
+        TYPE_MAP: list[str] = ["ana", "ext", "arc", "foana", "foext"]  # noqa: N806 pylint: disable=invalid-name
 
         audio_type_id = self._extract_xml_value(root.find("audtype"), int)
         audio_input_id = self._extract_xml_value(root.find("audport"), int)
@@ -84,7 +84,7 @@ class HDMIMatrixClient:
             MatrixConnectionError: If not connected
             MatrixCommandError: If command fails
         """
-        GETXML_ENDPOINT = "/cgi-bin/getxml.cgi"  # noqa: N806
+        GETXML_ENDPOINT = "/cgi-bin/getxml.cgi"  # noqa: N806 pylint: disable=invalid-name
 
         try:
             # Fetch the XML response
@@ -224,12 +224,12 @@ class HDMIMatrixClient:
     def connect(self) -> None:
         """Establish connection to the matrix device."""
         # Implementation to be completed
-        pass  # noqa: PIE790
+        pass  # noqa: PIE790 pylint: disable=unnecessary-pass
 
     def disconnect(self) -> None:
         """Close connection to the matrix device."""
         # Implementation to be completed
-        pass  # noqa: PIE790
+        pass  # noqa: PIE790 pylint: disable=unnecessary-pass
 
     def __enter__(self):
         """Context manager entry."""

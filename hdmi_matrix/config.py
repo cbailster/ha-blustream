@@ -85,9 +85,7 @@ class MatrixInfo:
             else:
                 name_source = self.input_names or {}
             for input_id, input_name in name_source.items():
-                if input_id <= (
-                    self.input_count or 0
-                ):  # Ensure input_id is within valid range
+                if input_id <= (self.input_count or 0):  # Ensure input_id is within valid range
                     common_audio_inputs[f"{key} {input_id}"] = f"{label} - {input_name}"
         return common_audio_inputs or None
 
